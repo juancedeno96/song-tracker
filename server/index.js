@@ -3,6 +3,7 @@ const cors = require("cors");
 const express = require("express");
 const massive = require("massive");
 const session = require("express-session");
+const authCtrl = require('./controller/authController')
 const { PORT, CONNECTION_STRING, SESSION_SECRET } = process.env;
 
 const app = express();
@@ -26,3 +27,9 @@ massive({
   console.log("db connected");
   app.listen(PORT, () => console.log(`running on port ${PORT}`));
 });
+
+//Auth Endpoints 
+app.post("/api/register", authCtrl.register);
+app.post('/api/login', authCtrl.login)
+app.get('/api/me', authCtrl.getUser)
+app.post('/api/logout', authCtrl.logout)
