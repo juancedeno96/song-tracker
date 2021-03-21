@@ -2,7 +2,7 @@ const bcrypt = require("bcryptjs");
 
 module.exports = {
   register: async (req, res) => {
-    const { email, password, profile_pic, playlist_uri } = req.body;
+    const { email, password, profile_pic,} = req.body;
     db = req.app.get("db");
     const [foundUser] = await db.find_user_by_email(email);
     if (foundUser) {
@@ -14,7 +14,6 @@ module.exports = {
       email,
       hash,
       profile_pic,
-      playlist_uri,
     ]);
     req.session.user = registeredUser;
     return res.status(201).send(req.session.user);
@@ -23,7 +22,7 @@ module.exports = {
     const { email, password } = req.body;
     const db = req.app.get("db");
 
-    const [foundUser] = await db.customer.find_customer_by_email(email);
+    const [foundUser] = await db.find_user_by_email(email);
 
     if (!foundUser) {
       return res.status(401).send("Email not found");
@@ -38,6 +37,7 @@ module.exports = {
     delete foundUser.password;
 
     req.session.user = foundUser;
+    console.log(foundUser)
     res.status(202).send(req.session.user);
   },
   logout: (req, res) => {
@@ -49,5 +49,6 @@ module.exports = {
       return res.sendStatus(401);
     }
     return res.status(200).send(req.session.user);
+
   },
 };

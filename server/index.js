@@ -4,7 +4,6 @@ const express = require("express");
 const massive = require("massive");
 const session = require("express-session");
 const authCtrl = require('./controller/authController')
-const spotifyCtrl = require('./controller/spotifyController')
 const { PORT, CONNECTION_STRING, SESSION_SECRET } = process.env;
 
 const app = express();
@@ -35,7 +34,3 @@ app.post('/api/login', authCtrl.login)
 app.get('/api/me', authCtrl.getUser)
 app.post('/api/logout', authCtrl.logout)
 
-//Spotify Endpoints
-app.get("/login", spotifyCtrl.spotifyLogin);
-app.get("/callback", spotifyCtrl.spotifyCallback);
-app.get("/", spotifyCtrl.getAccessToken);
