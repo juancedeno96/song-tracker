@@ -25,7 +25,6 @@ const Auth = (props) => {
       .post("/api/login", { email, password })
       .then((res) => {
         props.updateUser(res.data);
-        console.log(res.data)
         props.history.push("/home");
       })
       .catch(() => alert('incorrect email or password'));
@@ -42,8 +41,10 @@ const Auth = (props) => {
       })
       .then((res) => {
         props.updateUser(res.data);
-        props.history.push("/home");
-        alert("registered!");
+        alert("registered! Please Log in");
+        setView(false)
+        setEmail('')
+        setPassword('')
       })
       .catch((err) => console.log(err));
   };
@@ -57,7 +58,6 @@ const Auth = (props) => {
           <>
             <h3>Register Below</h3>
             
-          
             <input
               placeholder="Email"
               name="email"
@@ -114,4 +114,4 @@ const Auth = (props) => {
 
 const mapToStateProps = reduxState => reduxState
 
-export default connect(mapToStateProps, updateUser)(Auth);
+export default connect(mapToStateProps, {updateUser})(Auth);

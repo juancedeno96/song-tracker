@@ -6,6 +6,6 @@ import Landing from './components/Landing'
 export default (
     <Switch>
         <Route exact path ='/' component={Auth}/>
-        <Route exact path ='/home' component={Landing}/>
+        <Route path ='/home' component={Landing}/>
     </Switch>
 )
