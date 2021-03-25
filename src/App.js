@@ -1,13 +1,13 @@
+import React from 'react'
+import "./App.css";
+import routes from "./routes";
+import { DndProvider } from "react-dnd";
+import Backend from 'react-dnd-html5-backend'
 
-import './App.css';
-import routes from './routes'
-
-const App =() => {
+const App = () => {
   return (
-    <div className="App">
-     {routes}
-    </div>
-  );
-}
+    <DndProvider>{routes}</DndProvider>
+  )
+};
 
 export default App;
