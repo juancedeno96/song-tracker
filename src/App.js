@@ -6,7 +6,7 @@ import Backend from 'react-dnd-html5-backend'
 
 const App = () => {
   return (
-    <DndProvider>{routes}</DndProvider>
+    <DndProvider backend={Backend}>{routes}</DndProvider>
   )
 };
 
